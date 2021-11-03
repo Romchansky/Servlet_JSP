@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,19 +29,19 @@ public class ProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
-        if (action.startsWith("/find_Project")) {
+        if (action.startsWith("/findProject")) {
             req.getRequestDispatcher("/view/project/find_project.jsp").forward(req, resp);
         }
-        if (action.startsWith("/create_Project")) {
+        if (action.startsWith("/createProject")) {
             req.getRequestDispatcher("/view/project/create_project.jsp").forward(req, resp);
         }
-        if (action.startsWith("/update_Project")) {
+        if (action.startsWith("/updateProject")) {
             req.getRequestDispatcher("/view/project/update_project.jsp").forward(req, resp);
         }
-        if (action.startsWith("/delete_Project")) {
+        if (action.startsWith("/deleteProject")) {
             req.getRequestDispatcher("/view/project/delete_project.jsp").forward(req, resp);
         }
-        if (action.startsWith("/all_Project")) {
+        if (action.startsWith("/allProject")) {
             List<Project> projectList = projectRepository.findAll();
             req.setAttribute("projects", projectList);
             req.getRequestDispatcher("/view/project/all_projects.jsp").forward(req, resp);
@@ -116,7 +118,7 @@ public class ProjectServlet extends HttpServlet {
                 .name(request.getParameter("name"))
                 .field(request.getParameter("field"))
                 .cost(Long.valueOf(request.getParameter("cost")))
-                .createData("create_date")
+                .createData(Date.valueOf(request.getParameter("create_date")))
                 .build();
     }
 }

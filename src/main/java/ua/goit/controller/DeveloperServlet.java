@@ -27,19 +27,19 @@ public class DeveloperServlet extends Servlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
-        if (action.startsWith("/find_Developer")) {
+        if (action.startsWith("/findDeveloper")) {
             req.getRequestDispatcher("/view/developer/find_developer.jsp").forward(req, resp);
         }
-        if (action.startsWith("/create_Developer")) {
+        if (action.startsWith("/createDeveloper")) {
             req.getRequestDispatcher("/view/developer/create_developer.jsp").forward(req, resp);
         }
-        if (action.startsWith("/update_Developer")) {
+        if (action.startsWith("/updateDeveloper")) {
             req.getRequestDispatcher("/view/developer/update_developer.jsp").forward(req, resp);
         }
-        if (action.startsWith("/delete_Developer")) {
+        if (action.startsWith("/deleteDeveloper")) {
             req.getRequestDispatcher("/view/developer/delete_developer.jsp").forward(req, resp);
         }
-        if (action.startsWith("/all_Developer")) {
+        if (action.startsWith("/allDeveloper")) {
             List<Developer> developerList = developerRepository.findAll();
             req.setAttribute("developers", developerList);
             req.getRequestDispatcher("/view/developer/all_developers.jsp").forward(req, resp);
@@ -50,16 +50,16 @@ public class DeveloperServlet extends Servlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
-        if (action.startsWith("/create_Developer")) {
+        if (action.startsWith("/createDeveloper")) {
             createDeveloper(req, resp);
         }
-        if (action.startsWith("/find_Developer")) {
+        if (action.startsWith("/findDeveloper")) {
             findDeveloper(req, resp);
         }
-        if (action.startsWith("/delete_Developer")) {
+        if (action.startsWith("/deleteDeveloper")) {
             deleteDeveloper(req, resp);
         }
-        if (action.startsWith("/update_Developer")) {
+        if (action.startsWith("/updateDeveloper")) {
             updateDeveloper(req, resp);
         }
     }

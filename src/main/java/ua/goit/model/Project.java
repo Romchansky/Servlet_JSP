@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 @Data
 @Builder
@@ -34,6 +33,6 @@ public class Project implements BaseEntity<Long>{
     private Long cost;
 
     @Column(name = "create_date")
-    private String createData;
+    private Date createData;
 
 }

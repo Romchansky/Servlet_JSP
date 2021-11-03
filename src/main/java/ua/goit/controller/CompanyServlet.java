@@ -31,26 +31,26 @@ public class CompanyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
 
-        if (action.startsWith("/find_Company")) {
+        if (action.startsWith("/findCompany")) {
             req.getRequestDispatcher("/view/company/find_company.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/create_Company")) {
+        if (action.startsWith("/createCompany")) {
             req.getRequestDispatcher("/view/company/create_company.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/delete_Company")) {
+        if (action.startsWith("/deleteCompany")) {
             req.getRequestDispatcher("/view/company/delete_company.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/update_Company")) {
+        if (action.startsWith("/updateCompany")) {
             req.getRequestDispatcher("/view/company/update_company.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/all_Company")) {
+        if (action.startsWith("/allCompanies")) {
             List<Company> companies = companyRepository.findAll();
             req.setAttribute("companies", companies);
-            req.getRequestDispatcher("/view/company/all_company.jsp").forward(req, resp);
+            req.getRequestDispatcher("/view/company/all_companies.jsp").forward(req, resp);
         }
     }
 
@@ -59,19 +59,19 @@ public class CompanyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
 
-        if (action.startsWith("/create_Company")) {
+        if (action.startsWith("/createCompany")) {
             createCompany(req, resp);
         }
 
-        if (action.startsWith("/find_Company")) {
+        if (action.startsWith("/findCompany")) {
             findCompany(req, resp);
         }
 
-        if (action.startsWith("/delete_Company")) {
+        if (action.startsWith("/deleteCompany")) {
             deleteCompany(req, resp);
         }
 
-        if (action.startsWith("/update_Company")) {
+        if (action.startsWith("/updateCompany")) {
             updateCompany(req, resp);
         }
     }

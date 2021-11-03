@@ -2,37 +2,24 @@ package ua.goit.controller;
 
 import lombok.SneakyThrows;
 import ua.goit.model.Developer;
-import ua.goit.model.DeveloperProject;
-import ua.goit.model.DeveloperSkill;
-import ua.goit.model.Skills;
-import ua.goit.repository.CrudRepository;
-import ua.goit.repository.QueryRepositoryImpl;
-import ua.goit.repository.RepositoryFactory;
 
-import javax.servlet.ServletException;
+import ua.goit.repository.QueryRepositoryImpl;
+
+
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/query/*")
 public class QueryServlet extends HttpServlet {
 
-    private CrudRepository<Developer, Long> developerRepository;
-    private CrudRepository<Skills, Long> skillsRepository;
-    private CrudRepository<DeveloperProject, Long> developerProjectRepository;
-    private CrudRepository<DeveloperSkill, Long> developerSkillRepository;
     private QueryRepositoryImpl queryRepository;
-
 
     @Override
     public void init() {
-        developerRepository = RepositoryFactory.of(Developer.class);
-        skillsRepository = RepositoryFactory.of(Skills.class);
-        developerProjectRepository = RepositoryFactory.of(DeveloperProject.class);
-        developerSkillRepository = RepositoryFactory.of(DeveloperSkill.class);
         queryRepository = new QueryRepositoryImpl();
     }
 
@@ -40,16 +27,16 @@ public class QueryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
-        if (action.startsWith("/get_Developer_By_Project")) {
+        if (action.startsWith("/getDeveloperByProject")) {
             req.getRequestDispatcher("/view/query/get_developers_by_project.jsp").forward(req, resp);
         }
-        if (action.startsWith("/get_Language")) {
+        if (action.startsWith("/getLanguage")) {
             req.getRequestDispatcher("/view/query/get_language.jsp").forward(req, resp);
         }
-        if (action.startsWith("/get_Level")) {
+        if (action.startsWith("/getLevel")) {
             req.getRequestDispatcher("/view/query/get_level.jsp").forward(req, resp);
         }
-        if (action.startsWith("/get_Salary")) {
+        if (action.startsWith("/getSalary")) {
             req.getRequestDispatcher("/view/query/get_salary.jsp").forward(req, resp);
         }
     }
@@ -58,18 +45,18 @@ public class QueryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
-        if (action.startsWith("/get_Developer_By_Project")) {
+        if (action.startsWith("/getDeveloperByProject")) {
             getDevelopersByProject(req, resp);
         }
 
-        if (action.startsWith("/get_Level")) {
+        if (action.startsWith("/getLevel")) {
             getLevel(req, resp);
         }
 
-        if (action.startsWith("/get_Language")) {
+        if (action.startsWith("/getLanguage")) {
             getLanguage(req, resp);
         }
-        if (action.startsWith("/get_Salary")) {
+        if (action.startsWith("/getSalary")) {
             getSalary(req, resp);
         }
     }

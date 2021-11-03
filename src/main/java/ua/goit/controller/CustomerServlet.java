@@ -28,23 +28,23 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
-        if (action.startsWith("/find_Customer")) {
+        if (action.startsWith("/findCustomer")) {
             req.getRequestDispatcher("/view/customer/find_customer.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/create_Customer")) {
+        if (action.startsWith("/createCustomer")) {
             req.getRequestDispatcher("/view/customer/create_customer.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/update_Customer")) {
+        if (action.startsWith("/updateCustomer")) {
             req.getRequestDispatcher("/view/customer/update_customer.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/delete_Customer")) {
+        if (action.startsWith("/deleteCustomer")) {
             req.getRequestDispatcher("/view/customer/delete_customer.jsp").forward(req, resp);
         }
 
-        if (action.startsWith("/all_Customers")) {
+        if (action.startsWith("/allCustomers")) {
             List<Customer> customers = customerRepository.findAll();
             req.setAttribute("customers", customers);
             req.getRequestDispatcher("/view/customer/all_customers.jsp").forward(req, resp);
@@ -56,16 +56,16 @@ public class CustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getPathInfo();
 
-        if (action.startsWith("/create_Customer")) {
+        if (action.startsWith("/createCustomer")) {
             createCustomer(req, resp);
         }
-        if (action.startsWith("/find_Customer")) {
+        if (action.startsWith("/findCustomer")) {
             findCustomer(req, resp);
         }
-        if (action.startsWith("/delete_Customer")) {
+        if (action.startsWith("/deleteCustomer")) {
             deleteCustomer(req, resp);
         }
-        if (action.startsWith("/update_Customer")) {
+        if (action.startsWith("/updateCustomer")) {
             updateCustomer(req, resp);
         }
     }
